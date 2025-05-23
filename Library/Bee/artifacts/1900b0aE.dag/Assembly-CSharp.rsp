@@ -356,6 +356,7 @@
 -analyzer:"D:/Unity/2022.3.28f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Car.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/GameUI.cs"
 "Assets/Scripts/Menu.cs"
 -langversion:9.0
 /deterministic
