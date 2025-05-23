@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
    public float thoiGianChoPhepVeDich = 30f;
    public bool ketThucGame = false;
    private static GameManager instance;
+   public GameObject timeOverObject;
+   public GameObject setGameOverObject;
 
    public static GameManager Instance
    {
@@ -14,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = FindAnyObjectByType<GameManager>();
+            instance = FindObjectOfType<GameManager>();
             if (instance == null)
             {
                 GameObject gameManagerGameObject = new GameObject("GameManager");
@@ -29,8 +31,11 @@ public class GameManager : MonoBehaviour
         if (!ketThucGame)
         {
             thoiGianChoPhepVeDich -= Time.deltaTime;
+            // Debug.Log(thoiGianChoPhepVeDich);
             if(thoiGianChoPhepVeDich <= 0)
             {
+                setGameOverObject.SetActive(true);
+                timeOverObject.SetActive(false);
                 KetThucGame();
             }
         }
