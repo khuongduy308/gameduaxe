@@ -4,44 +4,67 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   public float thoiGianChoPhepVeDich = 30f;
-   public bool ketThucGame = false;
-   private static GameManager instance;
-   public GameObject timeOverObject;
-   public GameObject setGameOverObject;
+    public float thoiGianChoPhepVeDich = 30f;
+    public bool ketThucGame = false;
+    public bool winGame = false;
+    private static GameManager instance;
+    public GameObject timeOverObject;
+    public GameObject setGameOverObject;
+    public GameObject winGameObject;
+    [SerializeField]
+    public float thoiGianHoiKhiQuaCheckPoint = 31f;
 
-   public static GameManager Instance
-   {
-    get
+    public static GameManager Instance
     {
-        if (instance == null)
+        get
         {
-            instance = FindObjectOfType<GameManager>();
             if (instance == null)
             {
-                GameObject gameManagerGameObject = new GameObject("GameManager");
-                instance = gameManagerGameObject.AddComponent<GameManager>();
+                instance = FindObjectOfType<GameManager>();
+                if (instance == null)
+                {
+                    GameObject gameManagerGameObject = new GameObject("GameManager");
+                    instance = gameManagerGameObject.AddComponent<GameManager>();
+                }
             }
+            return instance;
         }
-        return instance;
     }
-   }
     private void Update()
     {
         if (!ketThucGame)
         {
             thoiGianChoPhepVeDich -= Time.deltaTime;
             // Debug.Log(thoiGianChoPhepVeDich);
-            if(thoiGianChoPhepVeDich <= 0)
+            if (thoiGianChoPhepVeDich <= 0)
             {
                 setGameOverObject.SetActive(true);
                 timeOverObject.SetActive(false);
                 KetThucGame();
+            }
+            if (winGame)
+            {
+                timeOverObject.SetActive(false);
+                winGameObject.SetActive(true);
             }
         }
     }
     public void KetThucGame()
     {
         ketThucGame = true;
+    }
+    public void quaCheckPoint()
+    {
+        if (!ketThucGame)
+        {
+            thoiGianChoPhepVeDich += thoiGianHoiKhiQuaCheckPoint;
+        }
+    }
+    public void quaWinPoint()
+    {
+        if (!ketThucGame)
+        {
+            winGame = true;
+        }
     }
 }

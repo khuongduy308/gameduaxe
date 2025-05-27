@@ -358,6 +358,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GameUI.cs"
 "Assets/Scripts/Menu.cs"
+"Assets/Scripts/XuLyVaChamChoXe.cs"
 -langversion:9.0
 /deterministic
 /optimize+
